@@ -27,9 +27,10 @@ export default {};
 .nav-main {
   display: flex;
   align-items: center;
+  height: 6%;
   justify-content: space-between;
   background-image: linear-gradient(to right, #5e62db, #222e6d);
-  padding: 10px 25px;
+  padding: 0px 25px;
 
   .logo {
     font-family: var(--font-family-base);
