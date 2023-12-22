@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;500;600;700&display=swap');
+
+:root {
+    --font-family-base: 'League Spartan', sans-serif; 
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+}
+
+.font-bold {
+    font-weight: 500;
+}
+
+.text-white {
+    color: #fff;
+}
