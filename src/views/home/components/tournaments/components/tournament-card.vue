@@ -5,7 +5,7 @@
 
       <div>
         <p class="text-color mb-4">Inicio - Fim</p>
-        <p class="tournament-name font-bold mb-2">NOME DO CAMPEONATO</p>
+        <p class="tournament-name font-bold mb-2">{{ event.eventName }}</p>
         <div>
           <span class="game-status mr-2">Jogo</span>
           <span class="game-status mr-2">Formato</span>
@@ -18,26 +18,27 @@
       <div class="dsgn-flex-between">
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Premiação</span>
-          <span class="text-white">$ 1.390,00</span>
+          <span class="text-white">{{ formatMonetary(event.awardPrice) }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Taxa inscrição</span>
-          <span class="text-white">$ 21,72</span>
+          <span class="text-white">{{ formatMonetary(event.registrationTax) }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Participantes</span>
-          <span class="text-white">43/128</span>
+          <span class="text-white"
+            >{{ event.participantsTotal }}/{{ event.participantsLimit }}</span
+          >
         </div>
       </div>
     </div>
-
     <div class="card-footer dsgn-flex-between dsgn-align-center mt-4 px-4 py-2">
       <div class="footer-host dsgn-flex dsgn-align-center">
         <div class="footer-img mr-2"></div>
 
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Organizado por</span>
-          <span class="text-white">Corsario_97</span>
+          <span class="text-white">{{ event.host }}</span>
         </div>
       </div>
 
@@ -47,7 +48,13 @@
 </template>
 
 <script>
-export default {};
+import {formatMonetary} from "@/utils/format-money.js"
+export default {
+  props: ["event"],
+  methods: {
+    formatMonetary
+  }
+};
 </script>
 
 <style lang="scss" scoped>

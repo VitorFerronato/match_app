@@ -44,7 +44,8 @@ export default {};
     border-radius: 15px;
     background-size: cover;
     position: relative;
-    box-shadow: inset 0 -100px 30px -30px rgba(0, 0, 0, 0.767); /* sombreado interno embaixo */
+    box-shadow: inset 0 -100px 30px -30px rgba(0, 0, 0, 0.767);
+
   }
 
   .right-games {
