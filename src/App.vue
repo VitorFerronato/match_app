@@ -3,7 +3,7 @@
     <v-main>
       <Top-navbar />
       <Sidebar-nav />
-      <router-view />
+      <router-view class="view" />
     </v-main>
   </v-app>
 </template>
@@ -21,4 +21,18 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss" >
+.v-main {
+  background-color: var(--color-secondary);
+  font-family: var(--font-family-base);
+}
+
+.view {
+  padding-left: calc(var(--sidebar-width) + 2rem);
+  padding-right: 2rem;
+  padding-top: 2rem;
+}
+</style>
+
 

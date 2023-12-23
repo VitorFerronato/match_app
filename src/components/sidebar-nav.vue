@@ -32,8 +32,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60px;
-  height: 94%;
+  width: var(--sidebar-width);
+  height: 92%;
   padding: 10px 0;
   position: fixed;
   left: 0;

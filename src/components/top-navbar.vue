@@ -27,26 +27,38 @@ export default {};
 .nav-main {
   display: flex;
   align-items: center;
-  height: 6%;
   justify-content: space-between;
   background-image: linear-gradient(to right, #5e62db, #222e6d);
   padding: 0px 25px;
+
+  @media (min-width: 768px) {
+    height: 70px;
+  }
+
+  @media (min-width: 1200px) {
+    height: 75px;
+  }
 
   .logo {
     font-family: var(--font-family-base);
   }
 
-.search{
+  .search {
     width: 250px;
     background-color: rgba(20, 19, 19, 0.26);
     border-radius: 8px;
-}
+  }
   .square {
     width: 30px;
     height: 30px;
     background-color: rgba(255, 255, 255, 0.08);
     margin-right: 54px;
     border-radius: 8px;
+
+    @media (min-width: 1200px) {
+      width: 45px;
+      height: 45px;
+    }
   }
 }
 </style>
