@@ -1,14 +1,12 @@
-export function formatDate(dataString) {
-    if (!dataString) return
+export function formatDate(isoDate) {
+    if (!isoDate) return "-"
 
-    let data = new Date(dataString);
+    const date = new Date(isoDate);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
 
-    let dia = data.getDate().toString().padStart(2, '0');
-    let mes = (data.getMonth() + 1).toString().padStart(2, '0'); // getMonth() retorna mês de 0-11
-    let ano = data.getFullYear();
-
-    let horas = data.getHours().toString().padStart(2, '0');
-    let minutos = data.getMinutes().toString().padStart(2, '0');
-
-    return `${dia}/${mes}/${ano} - ${horas}:${minutos}`;
+    return `${day}/${month}/${year} - ${hours}:${minutes}`;
 }

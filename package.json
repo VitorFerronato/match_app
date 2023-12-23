@@ -1,6 +1,7 @@
 {
   "name": "app_torneio",
   "version": "0.1.0",
+  "author": "Vitor Ferronato",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

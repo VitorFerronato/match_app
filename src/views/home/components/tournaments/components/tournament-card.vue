@@ -4,7 +4,9 @@
       <div class="square"></div>
 
       <div>
-        <p class="text-color mb-4">Inicio - Fim</p>
+        <p class="text-color mb-4">
+          {{ formatDate(event.startDate) }} - {{ formatDate(event.endDate) }}
+        </p>
         <p class="tournament-name font-bold mb-2">{{ event.eventName }}</p>
         <div>
           <span class="game-status mr-2">Jogo</span>
@@ -22,7 +24,9 @@
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Taxa inscrição</span>
-          <span class="text-white">{{ formatMonetary(event.registrationTax) }}</span>
+          <span class="text-white">{{
+            formatMonetary(event.registrationTax)
+          }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Participantes</span>
@@ -48,12 +52,14 @@
 </template>
 
 <script>
-import {formatMonetary} from "@/utils/format-money.js"
+import { formatMonetary } from "@/utils/format-money.js";
+import { formatDate } from "@/utils/format-date.js";
 export default {
   props: ["event"],
   methods: {
-    formatMonetary
-  }
+    formatMonetary,
+    formatDate,
+  },
 };
 </script>
 
