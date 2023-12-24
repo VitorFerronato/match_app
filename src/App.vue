@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-main>
-      <Top-navbar />
-      <Sidebar-nav />
-      <router-view class="view" />
+      <Top-navbar v-if="this.$route.path.startsWith('/main')"/>
+      <Sidebar-nav v-if="this.$route.path.startsWith('/main')"/>
       <Snackbar />
+      <router-view class="view" />
     </v-main>
   </v-app>
 </template>
