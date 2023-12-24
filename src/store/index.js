@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import snackbar from "./snackbar-store.js"
+import user from "./user-store.js"
+
 export default createStore({
   state: {
   },
@@ -10,6 +12,7 @@ export default createStore({
   actions: {
   },
   modules: {
-    snackbar
+    snackbar,
+    user
   }
 })

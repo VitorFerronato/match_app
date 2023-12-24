@@ -1,6 +1,6 @@
 <template>
   <div class="mb-10">
-    <progress-circular v-if="isLoading" :size="60" />
+    <Progress-circular v-if="isLoading" :size="60" />
     <div v-if="!isLoading && tournaments.length > 0">
       <Tournament-game
         v-for="(tournament, index) in tournaments"
@@ -144,3 +144,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>

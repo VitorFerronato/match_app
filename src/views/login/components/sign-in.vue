@@ -1,43 +1,62 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12" sm="8" md="4">
-      <v-card :disabled="isLoading">
-        <v-card-title class="text-h5">Login</v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            label="Senha"
-            type="password"
-            required
-          ></v-text-field>
-          <router-link to="/login/register"><span>Registrar-se</span></router-link>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn :loading="isLoading" color="primary" @click="submit"
-            >Entrar</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div class="main-login" :class="{ disable: isLoading }">
+    <h4>Login</h4>
+
+    <div class="input-area">
+      <v-text-field
+        v-model="email"
+        :disabled="isLoading"
+        label="Email"
+        base-color="white"
+        bg-color="#1B1B1B"
+        hide-details
+        class="mb-4"
+      ></v-text-field>
+
+      <v-text-field
+        v-model="password"
+        :disabled="isLoading"
+        label="Senha"
+        base-color="white"
+        bg-color="#1B1B1B"
+        hide-details
+        class="mb-2"
+      ></v-text-field>
+
+      <div class="input-info">
+        <Checkbox />
+
+        <p>Esqueceu a senha?</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <v-btn
+        :loading="isLoading"
+        :disabled="isLoading"
+        @click="submit"
+        color="#4149A6"
+        class="fullwidth"
+        >Login</v-btn
+      >
+    </div>
+
+    <p class="register mt-6 mb-n4">
+      Ainda não possui uma conta? <span class="register">Registre-se</span>
+    </p>
+  </div>
 </template>
 
 <script>
 import service from "@/service/user-service.js";
+import Checkbox from "@/components/common/checkbox-comp.vue";
 const Service = new service();
+
 export default {
+  components: { Checkbox },
   data() {
     return {
       isLoading: false,
-      valid: false,
       email: "",
       password: "",
       emailRules: [
@@ -53,6 +72,7 @@ export default {
   methods: {
     async submit() {
       this.isLoading = true;
+
       let request = {
         email: this.email,
         password: this.password,
@@ -62,6 +82,13 @@ export default {
         let response = await Service.login(request);
 
         if (response.data.message == "Usuario Autenticado") {
+          let userData = {
+            userEmail: this.email,
+            nickName: "TO-DO",
+            isLogged: true,
+          };
+
+          this.$store.dispatch("user/setUserData", userData);
           this.$router.push("/main");
         }
       } catch (error) {
@@ -74,5 +101,57 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.main-login {
+  background-color: #282828;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 10px;
+
+  h4 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: var(--font-family-secondary);
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .input-area {
+    .input-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 16px;
+      gap: 6rem;
+
+      p {
+        color: var(--color-primary);
+        margin-top: 2px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .fullwidth {
+    width: 100%;
+  }
+
+  .register {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text);
+    span {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.disable {
+  pointer-events: none;
+}
 </style>

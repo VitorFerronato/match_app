@@ -9,12 +9,13 @@ import registerUser from "@/views/login/components/register-user.vue"
 const routes = [
   {
     path: "" || "/",
-    redirect: { name: "sign-in" }
+    redirect: { name: "home-main" }
   },
 
   {
     path: '/login',
     component: login,
+    redirect: {name: 'sign-in'},
     children: [
       {
         path: 'sign-in',
