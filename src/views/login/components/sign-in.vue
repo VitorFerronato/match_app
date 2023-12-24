@@ -26,7 +26,9 @@
       <div class="input-info">
         <Checkbox />
 
-        <p>Esqueceu a senha?</p>
+        <router-link to="/login/password-recovery">
+          <p>Esqueceu a senha?</p>
+        </router-link>
       </div>
     </div>
 
@@ -42,7 +44,10 @@
     </div>
 
     <p class="register mt-6 mb-n4">
-      Ainda não possui uma conta? <span class="register">Registre-se</span>
+      Ainda não possui uma conta?
+      <router-link to="/login/register"
+        ><span class="register">Registre-se</span></router-link
+      >
     </p>
   </div>
 </template>

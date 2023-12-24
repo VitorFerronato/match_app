@@ -5,6 +5,7 @@ import home from "@/views/home/home-main.vue"
 import login from "@/views/login/login-main.vue"
 import signIn from "@/views/login/components/sign-in.vue"
 import registerUser from "@/views/login/components/register-user.vue"
+import passwordRecovery from "@/views/login/components/password-recovery.vue"
 
 const routes = [
   {
@@ -15,7 +16,7 @@ const routes = [
   {
     path: '/login',
     component: login,
-    redirect: {name: 'sign-in'},
+    redirect: { name: 'sign-in' },
     children: [
       {
         path: 'sign-in',
@@ -31,6 +32,14 @@ const routes = [
         component: registerUser,
         meta: {
           title: 'CAMPZIN | REGISTRAR-SE'
+        }
+      },
+      {
+        path: 'password-recovery',
+        name: 'password-recovery',
+        component: passwordRecovery,
+        meta: {
+          title: 'CAMPZIN | RECUPERAR SENHA'
         }
       }
     ]
