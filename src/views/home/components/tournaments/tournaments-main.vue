@@ -3,8 +3,8 @@
     <progress-circular v-if="isLoading" :size="60" />
     <div v-if="!isLoading && tournaments.length > 0">
       <Tournament-game
-        v-for="tournament in tournaments"
-        :key="tournament.id"
+        v-for="(tournament, index) in tournaments"
+        :key="index"
         :tournament="tournament"
       />
     </div>
@@ -31,90 +31,61 @@ export default {
 
       tournaments: [
         {
-          id: 1,
-          tournament_name: "Rainbow Six",
+          game_name: "Rainbow Six Siege",
           events: [
             {
-              eventName: "Premier Beta",
-              awardPrice: 2577,
-              registrationTax: 24,
-              participantsTotal: 43,
-              participantsLimit: 128,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-              host: "Corsario_97",
+              id: "6399aac2-6390-4043-bea7-b229ff343d68",
+              tournament_name: "unfolded-pace.biz",
+              prize_pool: 618.84,
+              tax_participant: 9.669375,
+              participants: 10,
+              teams_limit: 64,
+              date_init: "2024-07-12T03:00:00.000Z",
+              date_end: "2023-03-30T03:00:00.000Z",
+              owner_name: "Tonya Conn",
             },
             {
-              eventName: "Mundial",
-              awardPrice: 1390,
-              registrationTax: 21.98,
-              participantsTotal: 22,
-              participantsLimit: 50,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Roger that",
-            },
-            {
-              eventName: "Copa cristão",
-              awardPrice: 1390,
-              registrationTax: 21.98,
-              participantsTotal: 44,
-              participantsLimit: 128,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Ferronitro",
+              id: "asdsad-6390-4043-bea7-b229ff343d68",
+              tournament_name: "unfolded-pace.biz",
+              prize_pool: 618.84,
+              tax_participant: 9.669375,
+              participants: 10,
+              teams_limit: 64,
+              date_init: "2024-07-12T03:00:00.000Z",
+              date_end: "2023-03-30T03:00:00.000Z",
+              owner_name: "Tonya Conn",
             },
           ],
         },
         {
-          id: 2,
-          tournament_name: "VALORANT",
+          game_name: "VALORANT",
           events: [
             {
-              eventName: "Premier Beta",
-              awardPrice: 2578,
-              registrationTax: 24,
-              participantsTotal: 43,
-              participantsLimit: 128,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Corsario_97",
+              id: "6399aac2-6390-4043-asdas-b229ff343d68",
+              tournament_name: "unfolded-pace.biz",
+              prize_pool: 618.84,
+              tax_participant: 9.669375,
+              participants: 10,
+              teams_limit: 64,
+              date_init: "2024-07-12T03:00:00.000Z",
+              date_end: "2023-03-30T03:00:00.000Z",
+              owner_name: "Tonya Conn",
             },
+          ],
+        },
+        {
+          game_name: "CS2",
+          events: [
             {
-              eventName: "Mundial",
-              awardPrice: 1390,
-              registrationTax: 21.98,
-              participantsTotal: 22,
-              participantsLimit: 50,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Roger that",
-            },
-            {
-              eventName: "Copa cristão",
-              awardPrice: 1390,
-              registrationTax: 21.98,
-              participantsTotal: 44,
-              participantsLimit: 128,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Ferronitro",
-            },
-            {
-              eventName: "Copa cristão",
-              awardPrice: 1390,
-              registrationTax: 21.98,
-              participantsTotal: 44,
-              participantsLimit: 128,
-              startDate: '2023-04-29T03:00:00.000Z',
-              endDate: '2023-04-29T03:00:00.000Z',
-
-              host: "Ferronitro",
+              id: "6399aac2-6390-4043-asdas-b229ff34ADA3d68",
+              tournament_name: "unfolded-pace.biz",
+              prize_pool: 618.84,
+              tax_participant: 9.669375,
+              participants: 10,
+              teams_limit: 64,
+              date_init: "2024-07-12T03:00:00.000Z",
+              date_end: "2023-03-30T03:00:00.000Z",
+              owner_name: "Tonya Conn",
             },
           ],
         },
@@ -127,12 +98,40 @@ export default {
 
       try {
         let response = await Service.getTournaments();
-        console.log("getTournaments", response);
+        this.tournaments = this.groupByGame(response?.data ?? []);
       } catch (error) {
         console.log(error);
       }
 
       this.isLoading = false;
+    },
+
+    groupByGame(games) {
+      const groupedGames = new Map();
+
+      games.forEach((game) => {
+        if (!groupedGames.has(game.game_name)) {
+          groupedGames.set(game.game_name, {
+            game_name: game.game_name,
+            events: [],
+          });
+        }
+
+        const gameData = groupedGames.get(game.game_name);
+        gameData.events.push({
+          id: game.id,
+          tournament_name: game.tournament_name,
+          prize_pool: game.prize_pool,
+          tax_participant: game.tax_participant,
+          participants: parseInt(game.participants, 10),
+          teams_limit: game.teams_limit,
+          date_init: game.date_init,
+          date_end: game.date_end,
+          owner_name: game.owner_name,
+        });
+      });
+
+      return Array.from(groupedGames.values());
     },
   },
 

@@ -5,9 +5,9 @@
 
       <div>
         <p class="text-color mb-4">
-          {{ formatDate(event.startDate) }} - {{ formatDate(event.endDate) }}
+          {{ formatDate(event.date_init) }} - {{ formatDate(event.date_end) }}
         </p>
-        <p class="tournament-name font-bold mb-2">{{ event.eventName }}</p>
+        <p class="tournament-name font-bold mb-2">{{ event.tournament_name }}</p>
         <div>
           <span class="game-status mr-2">Jogo</span>
           <span class="game-status mr-2">Formato</span>
@@ -20,18 +20,18 @@
       <div class="dsgn-flex-between">
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Premiação</span>
-          <span class="text-white">{{ formatMonetary(event.awardPrice) }}</span>
+          <span class="text-white">{{ formatMonetary(event.prize_pool) }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Taxa inscrição</span>
           <span class="text-white">{{
-            formatMonetary(event.registrationTax)
+            formatMonetary(event.tax_participant)
           }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Participantes</span>
           <span class="text-white"
-            >{{ event.participantsTotal }}/{{ event.participantsLimit }}</span
+            >{{ event.participants }}/{{ event.teams_limit }}</span
           >
         </div>
       </div>
@@ -42,7 +42,7 @@
 
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Organizado por</span>
-          <span class="text-white">{{ event.host }}</span>
+          <span class="text-white">{{ event.owner_name }}</span>
         </div>
       </div>
 

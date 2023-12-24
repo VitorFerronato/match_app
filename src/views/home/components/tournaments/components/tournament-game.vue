@@ -1,7 +1,7 @@
 <template>
   <div class="mt-10">
     <h4 class="text-white font-bold text-h4 mb-2">TORNEIOS</h4>
-    <span class="game-status">{{ tournament.tournament_name }}</span>
+    <span class="game-status">{{ tournament.game_name }}</span>
     <div class="games-main gap-1 mt-4">
       <Tournament-card
         v-for="(event, index) in tournament.events"
