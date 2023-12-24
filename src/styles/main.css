@@ -5,6 +5,7 @@
     /* FONTS */
     --font-family-base: 'League Spartan', sans-serif;
     --font-family-secondary: 'Manrope', sans-serif;
+    
     --header-height: 8%;
     --sidebar-width: 60px;
 
@@ -12,8 +13,6 @@
     --color-primary: #7578C7;
     --color-secondary: #0f0f0f;
     --color-text: #AEAEAE
-
-    
 }
 
 /* COMMON CLASSES */
