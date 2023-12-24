@@ -101,6 +101,10 @@ export default {
         this.tournaments = this.groupByGame(response?.data ?? []);
       } catch (error) {
         console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao buscar torneios",
+          type: "error",
+        });
       }
 
       this.isLoading = false;
