@@ -38,6 +38,7 @@ export default {
   position: fixed;
   left: 0;
   background-image: linear-gradient(to top, #1b1b1b, #111111);
+  z-index: 0;
 }
 .square {
   width: 35px;

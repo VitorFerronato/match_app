@@ -30,6 +30,7 @@ export default {};
   justify-content: space-between;
   background-image: linear-gradient(to right, #5e62db, #222e6d);
   padding: 0px 25px;
+  z-index: 100000;
 
   @media (min-width: 768px) {
     height: 70px;
