@@ -132,6 +132,7 @@ export default {
           date_init: game.date_init,
           date_end: game.date_end,
           owner_name: game.owner_name,
+          format: game.format,
         });
       });
 

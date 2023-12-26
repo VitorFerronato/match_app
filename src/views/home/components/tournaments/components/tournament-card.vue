@@ -11,8 +11,7 @@
           {{ event.tournament_name }}
         </p>
         <div>
-          <span class="game-status mr-2">Jogo</span>
-          <span class="game-status mr-2">Formato</span>
+          <span class="game-status mr-2">{{ event.format }}</span>
           <span class="game-status mr-2">PC</span>
         </div>
       </div>
