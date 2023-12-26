@@ -30,15 +30,11 @@ export default {};
   justify-content: space-between;
   background-image: linear-gradient(to right, #5e62db, #222e6d);
   padding: 0px 25px;
-  z-index: 100000;
-
-  @media (min-width: 768px) {
-    height: 70px;
-  }
-
-  @media (min-width: 1200px) {
-    height: 75px;
-  }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: var(--header-height);
 
   .logo {
     font-family: var(--font-family-base);
