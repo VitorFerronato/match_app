@@ -5,7 +5,7 @@
 
       <div>
         <p class="text-color mb-4">
-          {{ formatDate(event.date_init) }} - {{ formatDate(event.date_end) }}
+          {{ formatDate(event.date_init) }}
         </p>
         <p class="tournament-name font-bold mb-2">
           {{ event.tournament_name }}

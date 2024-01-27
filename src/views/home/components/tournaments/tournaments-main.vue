@@ -111,27 +111,28 @@ export default {
     },
 
     groupByGame(games) {
+      console.log(games)
       const groupedGames = new Map();
 
       games.forEach((game) => {
-        if (!groupedGames.has(game.game_name)) {
-          groupedGames.set(game.game_name, {
-            game_name: game.game_name,
+        if (!groupedGames.has(game.game)) {
+          groupedGames.set(game.game, {
+            game_name: game.game,
             events: [],
           });
         }
 
-        const gameData = groupedGames.get(game.game_name);
+        const gameData = groupedGames.get(game.game);
         gameData.events.push({
           id: game.id,
-          tournament_name: game.tournament_name,
+          tournament_name: game.name,
           prize_pool: game.prize_pool,
-          tax_participant: game.tax_participant,
-          participants: parseInt(game.participants, 10),
-          teams_limit: game.teams_limit,
+          tax_participant: game.tax_inscription,
+          participants: parseInt(game.total_participants, 10),
+          teams_limit: game.limit_participant,
           date_init: game.date_init,
           date_end: game.date_end,
-          owner_name: game.owner_name,
+          owner_name: game.owner_tournament,
           format: game.format,
         });
       });
