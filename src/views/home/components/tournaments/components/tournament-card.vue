@@ -66,7 +66,7 @@ export default {
     formatMonetary,
     formatDate,
     compete() {
-      console.log(this.competition);
+      this.$router.push('/main/game-info')
     },
   },
 };
