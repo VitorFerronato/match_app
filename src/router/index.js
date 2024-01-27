@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+//HOME
 import home from "@/views/home/home-main.vue"
+
+//GAME
+import gameInfo from "@/views/game-info/game-info.vue"
 
 //LOGIN AREA
 import login from "@/views/login/login-main.vue"
@@ -54,6 +59,14 @@ const routes = [
         component: home,
         meta: {
           title: 'CAMPZIN | HOME'
+        }
+      },
+      {
+        path: '/main/game-info',
+        name: 'game-info',
+        component: gameInfo,
+        meta: {
+          title: 'CAMPZIN | GAME'
         }
       },
     ]

@@ -5,13 +5,13 @@
 
       <div>
         <p class="text-color mb-4">
-          {{ formatDate(event.date_init) }}
+          {{ formatDate(competition.date_init) }}
         </p>
         <p class="tournament-name font-bold mb-2">
-          {{ event.tournament_name }}
+          {{ competition.tournament_name }}
         </p>
         <div>
-          <span class="game-status mr-2">{{ event.format }}</span>
+          <span class="game-status mr-2">{{ competition.format }}</span>
           <span class="game-status mr-2">PC</span>
         </div>
       </div>
@@ -21,33 +21,36 @@
       <div class="dsgn-flex-between">
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Premiação</span>
-          <span class="text-white">{{ formatMonetary(event.prize_pool) }}</span>
+          <span class="text-white">{{
+            formatMonetary(competition.prize_pool)
+          }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Taxa inscrição</span>
           <span class="text-white">{{
-            formatMonetary(event.tax_participant)
+            formatMonetary(competition.tax_participant)
           }}</span>
         </div>
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Participantes</span>
           <span class="text-white"
-            >{{ event.participants }}/{{ event.teams_limit }}</span
+            >{{ competition.participants }}/{{ competition.teams_limit }}</span
           >
         </div>
       </div>
     </div>
+
     <div class="card-footer dsgn-flex-between dsgn-align-center mt-4 px-4 py-2">
       <div class="footer-host dsgn-flex dsgn-align-center">
         <div class="footer-img mr-2"></div>
 
         <div class="dsgn-flex-column">
           <span class="text-white-secondary font-12">Organizado por</span>
-          <span class="text-white">{{ event.owner_name }}</span>
+          <span class="text-white">{{ competition.owner_name }}</span>
         </div>
       </div>
 
-      <v-btn :color="'#4149A6'">Competir</v-btn>
+      <Dsg-btn :title="'Competir'" @click="compete" />
     </div>
   </div>
 </template>
@@ -55,11 +58,16 @@
 <script>
 import { formatMonetary } from "@/utils/format-money.js";
 import { formatDate } from "@/utils/format-date.js";
+import DsgBtn from "@/components/common/dsg-btn.vue";
 export default {
-  props: ["event"],
+  components: { DsgBtn },
+  props: ["competition"],
   methods: {
     formatMonetary,
     formatDate,
+    compete() {
+      console.log(this.competition);
+    },
   },
 };
 </script>

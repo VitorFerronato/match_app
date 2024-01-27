@@ -6,7 +6,7 @@
       <Tournament-card
         v-for="(event, index) in tournament.events"
         :key="index"
-        :event="event"
+        :competition="event"
       />
     </div>
   </div>

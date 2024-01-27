@@ -38,6 +38,7 @@ export default {};
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  margin-top: var(--header-height);
 
   .game-banner {
     height: 100%;
