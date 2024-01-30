@@ -85,8 +85,7 @@ export default {
 
       try {
         let response = await Service.login(request);
-
-        if (response.data.message == "Usuario Autenticado") {
+        if (response.status == 200) {
           let userData = {
             userEmail: this.email,
             nickName: "TO-DO",

@@ -8,7 +8,7 @@ export default class TournamentService extends ServiceBase {
          * @param {string} email
          * @param {string} password
          */
-        return await axiosInstance.post(API_URL + "login", request, {
+        return await axiosInstance.post(API_URL + "user/login", request, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -22,6 +22,6 @@ export default class TournamentService extends ServiceBase {
          * @param {string} full_name
          * @param {string} nickname
          */
-        return await axiosInstance.post(API_URL + "register", request);
+        return await axiosInstance.post(API_URL + "user/register", request);
     }
 }
