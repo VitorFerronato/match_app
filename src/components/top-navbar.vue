@@ -14,13 +14,20 @@
         </template>
       </v-text-field>
     </div>
-
-    <div class="square"></div>
+    <div class="d-flex">
+      <router-link to="/login/">
+        <v-btn class="mr-2" color="#5E62DB" @click="submit">Login</v-btn>
+      </router-link>
+      <router-link to="/login/register">
+        <v-btn color="#252525" @click="submit">Registrar</v-btn>
+      </router-link>
+    </div>
   </nav>
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style lang="scss" scoped>
@@ -28,7 +35,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: linear-gradient(to right, #5e62db, #222e6d);
+  background-image: #252525;
   padding: 0px 25px;
   position: fixed;
   top: 0;
@@ -42,20 +49,9 @@ export default {};
 
   .search {
     width: 250px;
-    background-color: rgba(20, 19, 19, 0.26);
+    background-color: #252525;
     border-radius: 8px;
   }
-  .square {
-    width: 30px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.08);
-    margin-right: 54px;
-    border-radius: 8px;
-
-    @media (min-width: 1200px) {
-      width: 45px;
-      height: 45px;
-    }
-  }
+  
 }
 </style>

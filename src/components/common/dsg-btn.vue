@@ -50,6 +50,6 @@ export default {
 <style lang="scss" scoped>
 .buttom {
   align-items: center;
-  border-radius: 5px;
+  border-radius: 9px;
 }
 </style>
