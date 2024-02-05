@@ -4,15 +4,19 @@
       <div class="square"></div>
 
       <div>
-        <p class="text-color mb-4">
-          {{ formatDate(competition.date_init) }}
-        </p>
-        <p class="tournament-name font-bold mb-2">
+        <p class="tournament-name font-bold">
           {{ competition.tournament_name }}
-        </p>
+          </p>
+          <p class="text-color">
+          {{ formatDate(competition.date_init) }}   
+          </p>
+          <p class="text-color"> 
+            Check-in: {{competition.time_checking}}M
+          </p>
+          
         <div>
           <span class="game-status mr-2">{{ competition.format }}</span>
-          <span class="game-status mr-2">PC</span>
+          <span class="game-status mr-2">{{ competition.plataform}}</span>
         </div>
       </div>
     </div>
@@ -50,7 +54,7 @@
         </div>
       </div>
 
-      <Dsg-btn :title="'Competir'" @click="compete" />
+      <Dsg-btn :color="'#5E62DB'" :title="'Competir'" @click="compete" />
     </div>
   </div>
 </template>
@@ -66,7 +70,8 @@ export default {
     formatMonetary,
     formatDate,
     compete() {
-      this.$router.push('/main/game-info')
+      const competitionId = this.competition.id;
+      this.$router.push(`/tournament/${competitionId}`)
     },
   },
 };

@@ -2,8 +2,8 @@
   <v-app>
     <v-main>
       <div v-if="!mobile">
-        <Top-navbar v-if="this.$route.path.startsWith('/main')" />
-        <Sidebar-nav v-if="this.$route.path.startsWith('/main')" />
+        <Top-navbar v-if="this.$route.path.startsWith('/')" />
+        <Sidebar-nav v-if="this.$route.path.startsWith('/')" />
         <Snackbar />
         <router-view class="view" />
       </div>

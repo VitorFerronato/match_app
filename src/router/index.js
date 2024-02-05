@@ -50,11 +50,11 @@ const routes = [
     ]
   },
   {
-    path: '/main',
+    path: '/',
     redirect: { name: "home-main" },
     children: [
       {
-        path: '/main/home',
+        path: '/',
         name: 'home-main',
         component: home,
         meta: {
@@ -62,11 +62,11 @@ const routes = [
         }
       },
       {
-        path: '/main/game-info',
-        name: 'game-info',
+        path: '/tournament/:id',
+        name: 'tournament-info',
         component: gameInfo,
         meta: {
-          title: 'CAMPZIN | GAME'
+          title: 'CAMPZIN | TOURNAMENT'
         }
       },
     ]

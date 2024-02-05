@@ -10,7 +10,7 @@
             <span>Data Hora</span>
             <span class="game-status">Aberto</span>
           </div>
-          <Dsg-btn :title="'Competir'" />
+          <Dsg-btn :color="'#5E62DB'"  :title="'Competir'" />
         </div>
       </div>
     </div>
