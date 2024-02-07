@@ -1,6 +1,8 @@
 <template>
   <div class="sidebar-main">
-    <div v-for="item in items" :key="item.id" class="square"></div>
+    <router-link v-for="item in items" :key="item.id" :to="item.href" class="square">
+      <!-- Conteúdo do item, se necessário -->
+    </router-link>
   </div>
 </template>
 
@@ -11,21 +13,14 @@ export default {
       items: [
         {
           id: 1,
-        },
-        {
-          id: 2,
-        },
-        {
-          id: 3,
-        },
-        {
-          id: 4,
-        },
+          href: "/login"
+        }
       ],
     };
   },
 };
 </script>
+
 
 <style lang="scss" scoped>
 .sidebar-main {
