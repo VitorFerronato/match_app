@@ -5,7 +5,7 @@
     /* FONTS */
     --font-family-base: 'League Spartan', sans-serif;
     --font-family-secondary: 'Manrope', sans-serif;
-    
+
     --header-height: 70px;
     --sidebar-width: 60px;
 
@@ -35,8 +35,8 @@
     justify-content: space-between;
 }
 
-.dsgn-align-center{
-align-items: center;
+.dsgn-align-center {
+    align-items: center;
 }
 
 .gap-1 {
@@ -55,10 +55,14 @@ align-items: center;
     color: var(--color-text);
 }
 
-.font-12{
+.font-12 {
     font-size: 12px;
 }
 
-.font-18{
+.font-18 {
     font-size: 18px;
+}
+
+.font-22 {
+    font-size: 22px;
 }

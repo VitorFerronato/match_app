@@ -7,10 +7,10 @@
         <div class="game-details">
           <div>
             <p class="pa-0 text-white">Nome do campeonato</p>
-            <span>Data Hora</span>
+            <span class="date">Data Hora</span>
             <span class="game-status">Aberto</span>
           </div>
-          <Dsg-btn :color="'#5E62DB'"  :title="'Competir'" />
+          <Dsg-btn :color="'#5E62DB'" :title="'Competir'" />
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-game {
-  padding-top: calc(var(--header-height) + 2rem);
+  padding-top: calc(var(--header-height) + 1.5rem);
 
   > div {
     height: 300px;
@@ -48,13 +48,16 @@ export default {
       .game-details {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
         width: 100%;
 
         > div {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
+          .date {
+            font-size: 16px;
+          }
         }
 
         .game-status {
@@ -63,6 +66,7 @@ export default {
           padding: 10px 25px;
           width: min-content;
           border-radius: 10px;
+          font-size: 16px;
         }
 
         p {
@@ -87,8 +91,8 @@ export default {
   }
 
   .square {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     background-color: rgba(255, 255, 255, 0.205);
     border-radius: 8px;
     margin-right: 12px;

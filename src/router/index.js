@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import home from "@/views/home/home-main.vue"
 
 //GAME
-import gameInfo from "@/views/game-info/game-info.vue"
+import gameInfo from "@/views/game-info/game-main.vue"
 
 //LOGIN AREA
 import login from "@/views/login/login-main.vue"
@@ -63,7 +63,7 @@ const routes = [
       },
       {
         path: '/tournament/:id',
-        name: 'tournament-info',
+        name: 'game-main',
         component: gameInfo,
         meta: {
           title: 'CAMPZIN | TOURNAMENT'
