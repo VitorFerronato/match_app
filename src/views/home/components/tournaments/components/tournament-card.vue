@@ -68,7 +68,12 @@ export default {
     formatDate,
     compete() {
       const competitionId = this.competition.id;
-      this.$router.push(`/tournament/${competitionId}`);
+      if (competitionId) this.$router.push(`/tournament/${competitionId}`);
+      else
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao validar torneio",
+          type: "error",
+        });
     },
   },
 };
