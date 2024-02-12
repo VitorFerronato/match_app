@@ -4,19 +4,16 @@
       <div class="square"></div>
 
       <div>
-        <p class="tournament-name font-bold">
+        <p class="text-color">
+          {{ formatDate(competition.date_init) }}
+        </p>
+
+        <p class="tournament-name font-22 font-bold mb-4">
           {{ competition.tournament_name }}
-          </p>
-          <p class="text-color">
-          {{ formatDate(competition.date_init) }}   
-          </p>
-          <p class="text-color"> 
-            Check-in: {{competition.time_checking}}M
-          </p>
-          
+        </p>
         <div>
           <span class="game-status mr-2">{{ competition.format }}</span>
-          <span class="game-status mr-2">{{ competition.plataform}}</span>
+          <span class="game-status mr-2">{{ competition.plataform }}</span>
         </div>
       </div>
     </div>
@@ -71,7 +68,7 @@ export default {
     formatDate,
     compete() {
       const competitionId = this.competition.id;
-      this.$router.push(`/tournament/${competitionId}`)
+      this.$router.push(`/tournament/${competitionId}`);
     },
   },
 };
