@@ -10,7 +10,7 @@
     @click="$emit('click', $event)"
   >
     <slot name="title">
-      {{ title }}
+      <span>{{ title }}</span>
     </slot>
     <slot name="icon-after"></slot>
   </v-btn>

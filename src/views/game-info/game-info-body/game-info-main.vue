@@ -7,18 +7,21 @@
     </v-tabs>
 
     <v-window v-model="tab">
-      <v-window-item value="geral-vision"> <Geral-vision-main /> </v-window-item>
+      <v-window-item value="geral-vision">
+        <Geral-vision-main />
+      </v-window-item>
       <v-window-item value="two"> two </v-window-item>
-      <v-window-item value="three"> three </v-window-item>
+      <v-window-item value="matches"> <Matches-main /> </v-window-item>
     </v-window>
   </div>
 </template>
 
 <script>
 import GeralVisionMain from "./components/geral-vision/geral-vision-main.vue";
+import MatchesMain from "./components/matches/matches-main.vue";
 
 export default {
-  components: { GeralVisionMain },
+  components: { GeralVisionMain, MatchesMain },
   data() {
     return {
       tab: 0,
