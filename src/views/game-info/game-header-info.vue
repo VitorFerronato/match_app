@@ -6,9 +6,11 @@
 
         <div class="game-details">
           <div>
-            <p class="pa-0 text-white">Nome do campeonato</p>
-            <span class="date">Data Hora</span>
-            <span class="game-status">Aberto</span>
+            <p class="pa-0 text-white">{{ tournament.tournament.name }}</p>
+            <span class="date">{{
+              formatDate(tournament.tournament.date_init)
+            }}</span>
+            <span class="game-status">{{ gameStatus }}</span>
           </div>
           <Dsg-btn :color="'#5E62DB'" :title="'Competir'" />
         </div>
@@ -18,10 +20,20 @@
 </template>
 
 <script>
+import { formatDate } from "@/utils/format-date.js";
 import DsgBtn from "@/components/common/dsg-btn.vue";
 export default {
+  props: ["tournament"],
   components: { DsgBtn },
   name: "game-info",
+  computed: {
+    gameStatus() {
+      return this.tournament.tournament.open_inscription ? "Aberto" : "Fechado";
+    },
+  },
+  methods: {
+    formatDate,
+  },
 };
 </script>
 

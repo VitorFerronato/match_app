@@ -112,7 +112,6 @@ export default {
 
     groupByGame(games) {
       const groupedGames = new Map();
-      console.log(games)
       games.forEach((game) => {
         if (!groupedGames.has(game.game_name)) {
           groupedGames.set(game.game_name, {
