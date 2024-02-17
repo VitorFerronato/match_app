@@ -26,11 +26,13 @@ export default {
   props: ["tournament"],
   components: { DsgBtn },
   name: "game-info",
+
   computed: {
     gameStatus() {
       return this.tournament.tournament.open_inscription ? "Aberto" : "Fechado";
     },
   },
+  
   methods: {
     formatDate,
   },
