@@ -27,8 +27,9 @@ export default {
 
       try {
         let response = await Service.getTournamentById(id);
-        console.log('resposta getTournamentById',response);
+        console.log("resposta getTournamentById", response);
         this.tournament = response?.data ?? [];
+        this.$store.commit("setTournament", this.tournament);
       } catch (error) {
         console.log(error);
         this.$store.commit("snackbar/set", {

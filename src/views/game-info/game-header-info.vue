@@ -6,10 +6,8 @@
 
         <div class="game-details">
           <div>
-            <p class="pa-0 text-white">{{ tournament.tournament.name }}</p>
-            <span class="date">{{
-              formatDate(tournament.tournament.date_init)
-            }}</span>
+            <p class="pa-0 text-white">{{ match.name }}</p>
+            <span class="date">{{ formatDate(match.date_init) }}</span>
             <span class="game-status">{{ gameStatus }}</span>
           </div>
           <Dsg-btn :color="'#5E62DB'" :title="'Competir'" />
@@ -28,11 +26,17 @@ export default {
   name: "game-info",
 
   computed: {
+    match() {
+      return this.tournament?.tournament ?? null;
+    },
+
     gameStatus() {
-      return this.tournament.tournament.open_inscription ? "Aberto" : "Fechado";
+      return this.tournament?.tournament?.open_inscription
+        ? "Aberto"
+        : "Fechado";
     },
   },
-  
+
   methods: {
     formatDate,
   },
