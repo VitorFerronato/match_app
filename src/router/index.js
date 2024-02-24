@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import home from "@/views/home/home-main.vue"
 
 //GAME
-import gameInfo from "@/views/game-info/game-main.vue"
+import gameInfo from "@/views/tournament-info/tournament-main.vue"
 
 //LOGIN AREA
 import login from "@/views/login/login-main.vue"

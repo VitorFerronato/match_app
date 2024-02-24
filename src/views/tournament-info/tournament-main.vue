@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import GameHeaderInfo from "./game-header-info.vue";
-import GameInfoMain from "./game-info-body/game-info-main.vue";
+import GameHeaderInfo from "./tournament-header-info.vue";
+import GameInfoMain from "./tournament-info-body/tournament-info-main.vue";
 import service from "@/service/tournaments.js";
 import ProgressCircular from "@/components/common/progress-circular.vue";
 const Service = new service();
