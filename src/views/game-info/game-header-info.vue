@@ -27,7 +27,7 @@ export default {
 
   computed: {
     tournamentName() {
-      return this.tournament?.description ?? null;
+      return this.tournament?.name ?? null;
     },
 
     dateInit() {

@@ -21,6 +21,9 @@ export default class TournamentService extends ServiceBase {
          * @param {string} email
          * @param {string} full_name
          * @param {string} nickname
+         * @param {string} pix_key
+         * @param {string} birthday_date
+         * @param {string} inscription_gov
          */
         return await axiosInstance.post(API_URL + "user/register", request);
     }

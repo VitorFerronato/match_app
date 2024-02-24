@@ -7,7 +7,6 @@
     :color="color"
     :outlined="outlined"
     :loading="loading"
-    @click="$emit('click', $event)"
   >
     <slot name="title">
       <span>{{ title }}</span>

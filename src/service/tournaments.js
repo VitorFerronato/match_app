@@ -10,4 +10,8 @@ export default class TournamentService extends ServiceBase {
     async getTournamentById(id) {
         return await axiosInstance.get(API_URL + `tournaments/${id}`);
     }
+
+    async getTeamsById(id) {
+        return await axiosInstance.get(API_URL + `tournaments/teams/${id}`);
+    }
 }

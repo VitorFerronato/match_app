@@ -1,5 +1,5 @@
 <template>
-  <div class="register-main">
+  <div class="register-main" :class="{ disable: isLoading }">
     <h4 class="text-center font-22 text-white mb-2">Register</h4>
     <span class="text-white-secondary">Pessoal</span>
     <div class="dsgn-flex gap-1 mt-1">
@@ -93,6 +93,7 @@
         <Dsg-btn
           :title="'Registrar'"
           :color="'#4149A6'"
+          :loading="isLoading"
           @click="register"
           class="compete-button"
         />
@@ -105,42 +106,69 @@
 </template>
 
 <script>
-// import service from "@/service/user-service.js";
-// const Service = new service();
+import service from "@/service/user-service.js";
+const Service = new service();
 
 import DsgBtn from "@/components/common/dsg-btn.vue";
 export default {
   components: { DsgBtn },
   data() {
     return {
-      name: null,
-      surname: null,
-      bornDate: null,
-      pixKey: null,
-      cpf: null,
-      nickname: null,
-      email: null,
-      password: null,
-      confirmPassword: null,
+      isLoading: false,
+      name: "Vitor",
+      surname: "Ferronato",
+      bornDate: "1999/08/31",
+      pixKey: "000.000.0000",
+      cpf: "382178937",
+      nickname: "Ferrolindo",
+      email: "vitorferrasdasdonato@gmail.com",
+      password: "123456",
+      confirmPassword: "123456",
     };
-  },  
-  computed: {},
+  },
+
   methods: {
     async register() {
+      this.isLoading = true;
       let request = {
         password: this.password,
         email: this.email,
         full_name: this.name + " " + this.surname,
         nickname: this.nickname,
+        pix_key: this.pixKey,
+        birthday_date: this.bornDate,
+        inscription_gov: this.cpf,
       };
-      console.log(request);
-      // let response = await Service.register;
+
+      try {
+        let response = await Service.register(request);
+        console.log("resposta do criar usuario", response);
+        this.$store.commit("snackbar/set", {
+          message: "Usuário criado com sucesso",
+          type: "success",
+        });
+        setTimeout(() => {
+          this.$router.push("/login");
+        }, 2000);
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao criar usuário",
+          type: "error",
+        });
+      }
+
+      this.isLoading = false;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .register-main {
   position: absolute;
   top: 50%;
