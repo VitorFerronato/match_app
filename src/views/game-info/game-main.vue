@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <Game-header-info :tournament="tournament" />
-    <Game-info-main :tournament="tournament" />
+  <div id="game-main">
+    <Progress-circular v-if="isLoading" :size="60" class="loading" />
+    <div v-else>
+      <Game-header-info :tournament="tournament" />
+      <Game-info-main :tournament="tournament" />
+    </div>
   </div>
 </template>
 
@@ -9,10 +12,11 @@
 import GameHeaderInfo from "./game-header-info.vue";
 import GameInfoMain from "./game-info-body/game-info-main.vue";
 import service from "@/service/tournaments.js";
+import ProgressCircular from "@/components/common/progress-circular.vue";
 const Service = new service();
 export default {
   name: "game-main",
-  components: { GameHeaderInfo, GameInfoMain },
+  components: { GameHeaderInfo, GameInfoMain, ProgressCircular },
   data() {
     return {
       isLoading: false,
@@ -28,7 +32,7 @@ export default {
       try {
         let response = await Service.getTournamentById(id);
         console.log("resposta getTournamentById", response);
-        this.tournament = response?.data ?? [];
+        this.tournament = response?.data[0] ?? [];
         this.$store.commit("setTournament", this.tournament);
       } catch (error) {
         console.log(error);
@@ -36,6 +40,7 @@ export default {
           message: "Erro ao busca torneio",
           type: "error",
         });
+        this.$router.push("/");
       }
 
       this.isLoading = false;
@@ -50,5 +55,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss' scoped>
+#game-main {
+  .loading {
+    text-align: center;
+    padding-top: 4rem;
+  }
+}
 </style>

@@ -23,6 +23,7 @@
     <v-text-field
       v-model="bornDate"
       label="Data de nascimento"
+      placeholder="dd/mm/aaaa"
       base-color="white"
       bg-color="#1B1B1B"
       hide-details
@@ -51,7 +52,7 @@
     <span class="text-white-secondary">Conta</span>
     <div class="dsgn-flex gap-1 mt-1">
       <v-text-field
-        v-model="nickName"
+        v-model="nickname"
         label="Nickname"
         base-color="white"
         bg-color="#1B1B1B"
@@ -90,8 +91,9 @@
     <v-row no-gutters justify="center">
       <v-col cols="12" md="4">
         <Dsg-btn
-          :title="'Competir'"
+          :title="'Registrar'"
           :color="'#4149A6'"
+          @click="register"
           class="compete-button"
         />
         <p class="font-12 text-center text-white-secondary ma-0 pa-0">
@@ -103,6 +105,9 @@
 </template>
 
 <script>
+// import service from "@/service/user-service.js";
+// const Service = new service();
+
 import DsgBtn from "@/components/common/dsg-btn.vue";
 export default {
   components: { DsgBtn },
@@ -118,11 +123,18 @@ export default {
       password: null,
       confirmPassword: null,
     };
-  },
+  },  
   computed: {},
   methods: {
     async register() {
-      console.log("Registrou");
+      let request = {
+        password: this.password,
+        email: this.email,
+        full_name: this.name + " " + this.surname,
+        nickname: this.nickname,
+      };
+      console.log(request);
+      // let response = await Service.register;
     },
   },
 };

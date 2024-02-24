@@ -6,9 +6,9 @@
 
         <div class="game-details">
           <div>
-            <p class="pa-0 text-white">{{ match.name }}</p>
-            <span class="date">{{ formatDate(match.date_init) }}</span>
-            <span class="game-status">{{ gameStatus }}</span>
+            <p class="pa-0 text-white">{{ tournamentName }}</p>
+            <span class="date">{{ formatDate(dateInit) }}</span>
+            <span class="game-status">{{ gameStatus }} </span>
           </div>
           <Dsg-btn :color="'#5E62DB'" :title="'Competir'" />
         </div>
@@ -26,14 +26,16 @@ export default {
   name: "game-info",
 
   computed: {
-    match() {
-      return this.tournament?.tournament ?? null;
+    tournamentName() {
+      return this.tournament?.description ?? null;
+    },
+
+    dateInit() {
+      return this.tournament?.date_init ?? null;
     },
 
     gameStatus() {
-      return this.tournament?.tournament?.open_inscription
-        ? "Aberto"
-        : "Fechado";
+      return this.tournament?.open_inscription ? "Aberto" : "Fechado" ?? null;
     },
   },
 
@@ -45,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-game {
-  padding-top: calc(var(--header-height) + 1.5rem);
+  padding-top: calc(var(--header-height) + 1rem);
 
   > div {
     height: 300px;

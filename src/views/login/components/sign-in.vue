@@ -6,10 +6,11 @@
       <v-text-field
         v-model="email"
         :disabled="isLoading"
+        @keyup="emailToLowerCase()"
         label="Email"
         base-color="white"
         bg-color="#1B1B1B"
-        hide-details
+        hide-details="auto"
         class="mb-4"
       ></v-text-field>
 
@@ -64,14 +65,11 @@ export default {
       isLoading: false,
       email: "",
       password: "",
-      emailRules: [
-        (v) => !!v || "E-mail é obrigatório",
-        (v) => /.+@.+\..+/.test(v) || "E-mail deve ser válido",
-      ],
-      passwordRules: [
-        (v) => !!v || "Senha é obrigatória",
-        (v) => v.length >= 8 || "Senha deve ter no mínimo 8 caracteres",
-      ],
+      emailRules: (value) => {
+        const pattern =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(value) || "Email inválido";
+      },
     };
   },
   methods: {
@@ -97,9 +95,16 @@ export default {
         }
       } catch (error) {
         console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Usuário ou senha incorretos",
+          type: "error",
+        });
       }
 
       this.isLoading = false;
+    },
+    emailToLowerCase() {
+      if (this.email) this.email = this.email.toLowerCase();
     },
   },
 };

@@ -1,6 +1,9 @@
 <template>
   <div class="mt-10">
-    <h4 class="text-white font-bold text-h4 mb-2">TORNEIOS</h4>
+    <v-row no-gutters align="center">
+      <h4 class="text-white font-bold text-h4 mb-2 mr-4">Torneios Populares</h4>
+      <Dsg-btn :title="'Criar'" />
+    </v-row>
     <span class="game-status">{{ tournament.game_name }}</span>
     <div class="games-main gap-1 mt-4">
       <Tournament-card
@@ -13,12 +16,13 @@
 </template>
 
 <script>
+import DsgBtn from "@/components/common/dsg-btn.vue";
 import TournamentCard from "./tournament-card.vue";
 
 export default {
   props: ["tournament"],
 
-  components: { TournamentCard },
+  components: { TournamentCard, DsgBtn },
 };
 </script>
 

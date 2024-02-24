@@ -4,11 +4,10 @@ import ServiceBase from "@/service/service-base";
 export default class TournamentService extends ServiceBase {
 
     async getTournaments() {
-        return await axiosInstance.get(API_URL + "tournament");
+        return await axiosInstance.get(API_URL + "tournaments");
     }
 
     async getTournamentById(id) {
-        console.log(id);
-        return await axiosInstance.get(API_URL + `tournament/${id}`);
+        return await axiosInstance.get(API_URL + `tournaments/${id}`);
     }
 }
