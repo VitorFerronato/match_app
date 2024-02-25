@@ -2,7 +2,9 @@
   <div class="mt-10">
     <v-row no-gutters align="center">
       <h4 class="text-white font-bold text-h4 mb-2 mr-4">Torneios Populares</h4>
-      <Dsg-btn :title="'Criar'" />
+      <router-link to="/create-tournament">
+        <Dsg-btn :title="'Criar'" />
+      </router-link>
     </v-row>
     <span class="game-status">{{ tournament.game_name }}</span>
     <div class="games-main gap-1 mt-4">

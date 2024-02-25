@@ -31,7 +31,7 @@ export default {
 
       try {
         let response = await Service.getTournamentById(id);
-        console.log("resposta getTournamentById", response);
+
         this.tournament = response?.data[0] ?? [];
         this.$store.commit("setTournament", this.tournament);
       } catch (error) {
@@ -57,6 +57,7 @@ export default {
 
 <style lang='scss' scoped>
 #game-main {
+  padding-top: calc(var(--header-height) + 1rem);
   .loading {
     text-align: center;
     padding-top: 4rem;
