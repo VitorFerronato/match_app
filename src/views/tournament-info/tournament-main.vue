@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import GameHeaderInfo from "./game-header-info.vue";
-import GameInfoMain from "./game-info-body/game-info-main.vue";
+import GameHeaderInfo from "./tournament-header-info.vue";
+import GameInfoMain from "./tournament-info-body/tournament-info-main.vue";
 import service from "@/service/tournaments.js";
 import ProgressCircular from "@/components/common/progress-circular.vue";
 const Service = new service();
@@ -31,7 +31,7 @@ export default {
 
       try {
         let response = await Service.getTournamentById(id);
-        console.log("resposta getTournamentById", response);
+
         this.tournament = response?.data[0] ?? [];
         this.$store.commit("setTournament", this.tournament);
       } catch (error) {
@@ -57,6 +57,7 @@ export default {
 
 <style lang='scss' scoped>
 #game-main {
+  padding-top: calc(var(--header-height) + 1rem);
   .loading {
     text-align: center;
     padding-top: 4rem;

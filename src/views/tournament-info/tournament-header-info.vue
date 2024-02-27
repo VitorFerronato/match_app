@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-game {
-  padding-top: calc(var(--header-height) + 1rem);
+  
 
   > div {
     height: 300px;

@@ -3,8 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 //HOME
 import home from "@/views/home/home-main.vue"
 
-//GAME
-import gameInfo from "@/views/game-info/game-main.vue"
+//GAME INFO
+import tournamentInfo from "@/views/tournament-info/tournament-main.vue"
+
+//CREATE TOURNAMENT
+import createTournament from "@/views/create-tournament/create-tournament-main.vue"
 
 //LOGIN AREA
 import login from "@/views/login/login-main.vue"
@@ -64,9 +67,17 @@ const routes = [
       {
         path: '/tournament/:id',
         name: 'game-main',
-        component: gameInfo,
+        component: tournamentInfo,
         meta: {
           title: 'CAMPZIN | TOURNAMENT'
+        }
+      },
+      {
+        path: '/create-tournament',
+        name: 'create-tournament-main',
+        component: createTournament,
+        meta: {
+          title: 'CAMPZIN | CREATE TOURNAMENT'
         }
       },
     ]
