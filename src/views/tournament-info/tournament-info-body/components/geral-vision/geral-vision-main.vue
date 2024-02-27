@@ -41,6 +41,7 @@ export default {
 <style lang="scss" scoped>
 .game-details {
   display: flex;
+  height: 400px;
 
   .div-middle {
     display: flex;

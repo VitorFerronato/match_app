@@ -10,7 +10,7 @@
             <span class="date">{{ formatDate(dateInit) }}</span>
             <span class="game-status">{{ gameStatus }} </span>
           </div>
-          <Dsg-btn :color="'#5E62DB'" :title="'Competir'" />
+          <Dsg-btn :color="'#5E62DB'" :title="'Competir'" :isGradient="true" />
         </div>
       </div>
     </div>
@@ -47,8 +47,6 @@ export default {
 
 <style lang="scss" scoped>
 .main-game {
-  
-
   > div {
     height: 300px;
     background: url("@/assets/games_img/r6.jpg") no-repeat center center;

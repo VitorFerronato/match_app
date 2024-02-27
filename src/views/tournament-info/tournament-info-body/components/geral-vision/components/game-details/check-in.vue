@@ -17,6 +17,7 @@ export default {};
 
 <style lang="scss" scoped>
 .check-in {
+  flex-grow: 1;
   .square {
     width: 40px;
     height: 50px;

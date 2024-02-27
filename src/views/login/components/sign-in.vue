@@ -34,14 +34,14 @@
     </div>
 
     <div class="text-center">
-      <v-btn
+      <Dsg-btn
+        :title="'Login'"
         :loading="isLoading"
         :disabled="isLoading"
+        :color="'#4149A6'"
         @click="submit"
-        color="#4149A6"
         class="fullwidth"
-        >Login</v-btn
-      >
+      />
     </div>
 
     <p class="register mt-6 mb-n4">
@@ -56,10 +56,11 @@
 <script>
 import service from "@/service/user-service.js";
 import Checkbox from "@/components/common/checkbox-comp.vue";
+import DsgBtn from "@/components/common/dsg-btn.vue";
 const Service = new service();
 
 export default {
-  components: { Checkbox },
+  components: { Checkbox, DsgBtn },
   data() {
     return {
       isLoading: false,

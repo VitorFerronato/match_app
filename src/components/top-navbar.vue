@@ -1,7 +1,9 @@
 <template>
   <nav class="nav-main">
     <div class="flex-center">
-      <span class="font-bold text-white logo">LOGO</span>
+      <router-link to="/"
+        ><span class="font-bold text-white logo">LOGO</span></router-link
+      >
       <v-text-field
         variant="outlined solo"
         density="compact"
@@ -24,11 +26,7 @@
         />
       </router-link>
       <router-link to="/login/register">
-        <Dsg-btn
-          :title="'Registrar'"
-          :color="'#252525'"
-          @click="submit"
-        />
+        <Dsg-btn :title="'Registrar'" :color="'#252525'" @click="submit" />
       </router-link>
     </div>
   </nav>
@@ -38,6 +36,23 @@
 import DsgBtn from "./common/dsg-btn.vue";
 export default {
   components: { DsgBtn },
+  methods: {
+    handleScroll() {
+      const nav = document.querySelector(".nav-main");
+      if (window.scrollY > 0) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 
@@ -53,6 +68,7 @@ export default {
   width: 100%;
   z-index: 1000;
   height: var(--header-height);
+  transition: .2s;
 
   .logo {
     font-family: var(--font-family-base);
@@ -63,5 +79,9 @@ export default {
     background-color: #252525;
     border-radius: 8px;
   }
+}
+
+.scrolled {
+  background-color: #111111;
 }
 </style>

@@ -8,7 +8,7 @@
         :actualStep="true"
       />
       <Step-status
-        :title="'Período de check-in'"
+        :title="'Check-in'"
         :subtitle="'Confirme a sua participação para garantir a sua vaga no torneio.'"
         :actualStep="true"
       />
