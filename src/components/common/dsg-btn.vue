@@ -1,7 +1,7 @@
 <template>
   <v-btn
     class="buttom"
-    :class="outlined ? '' : 'white--text'"
+    :class="{ 'white--text': !outlined, buttonGradient: isGradient }"
     :disabled="disabled"
     :small="small"
     :color="color"
@@ -42,6 +42,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isGradient: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
@@ -50,5 +54,9 @@ export default {
 .buttom {
   align-items: center;
   border-radius: 6px;
+}
+
+.buttonGradient {
+  background: linear-gradient(to right, #e602ff, #7f06f5);
 }
 </style>

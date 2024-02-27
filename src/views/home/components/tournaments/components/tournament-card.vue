@@ -51,7 +51,12 @@
         </div>
       </div>
 
-      <Dsg-btn :color="'#5E62DB'" :title="'Competir'" @click="compete" />
+      <Dsg-btn
+        :color="'#5E62DB'"
+        :title="'Competir'"
+        :isGradient="true"
+        @click="compete"
+      />
     </div>
   </div>
 </template>

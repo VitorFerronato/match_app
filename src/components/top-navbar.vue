@@ -16,17 +16,28 @@
     </div>
     <div class="d-flex">
       <router-link to="/login/">
-        <v-btn class="mr-2" color="#5E62DB" @click="submit">Login</v-btn>
+        <Dsg-btn
+          :title="'Login'"
+          :color="'#5E62DB'"
+          @click="submit"
+          class="mr-4"
+        />
       </router-link>
       <router-link to="/login/register">
-        <v-btn color="#252525" @click="submit">Registrar</v-btn>
+        <Dsg-btn
+          :title="'Registrar'"
+          :color="'#252525'"
+          @click="submit"
+        />
       </router-link>
     </div>
   </nav>
 </template>
 
 <script>
+import DsgBtn from "./common/dsg-btn.vue";
 export default {
+  components: { DsgBtn },
 };
 </script>
 
@@ -52,6 +63,5 @@ export default {
     background-color: #252525;
     border-radius: 8px;
   }
-  
 }
 </style>
