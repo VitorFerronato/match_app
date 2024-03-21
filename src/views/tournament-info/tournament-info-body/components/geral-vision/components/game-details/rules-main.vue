@@ -27,12 +27,12 @@ export default {
       ],
     };
   },
-  computed: {
-    isScrollable() {
-      const element = document.querySelector('.card-info');
-      return element.scrollHeight > element.clientHeight;
-    }
-  }
+  // computed: {
+  //   isScrollable() {
+  //     const element = document.querySelector('.card-info');
+  //     return element.scrollHeight > element.clientHeight;
+  //   }
+  // }
 };
 </script>
 
