@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3009/"
+const API_URL = "https://www.campzin.com/"
 
 var axiosInstance = axios.create({
     baseURL: API_URL,

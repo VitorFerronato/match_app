@@ -16,27 +16,34 @@
         ></v-text-field>
 
         <v-row no-gutters justify="space-between" class="mt-2">
-          <v-combobox
-            v-model="selectedGame"
-            :items="gameItems"
-            item-title="text"
-            menu-icon="mdi-chevron-down"
-            label="Jogo"
-            base-color="white"
-            bg-color="#252525"
-            hide-details
-            class="mr-2"
-          ></v-combobox>
-          <v-combobox
-            v-model="selectedPlataform"
-            :items="plataformItems"
-            item-title="text"
-            menu-icon="mdi-chevron-down"
-            label="Plataforma"
-            base-color="white"
-            bg-color="#252525"
-            hide-details
-          ></v-combobox>
+          <v-col class="mr-2">
+            <v-combobox
+              v-model="selectedGame"
+              :items="gameItems"
+              :loading="gameLoading"
+              :disabled="gameLoading || gameItems.length == 0"
+              item-title="name"
+              menu-icon="mdi-chevron-down"
+              label="Jogo"
+              base-color="white"
+              bg-color="#252525"
+              hide-details
+            ></v-combobox>
+          </v-col>
+          <v-col>
+            <v-combobox
+              v-model="selectedPlataform"
+              :items="plataformItems"
+              :loading="plataformLoading"
+              :disabled="plataformLoading || plataformItems.length == 0"
+              item-title="name"
+              menu-icon="mdi-chevron-down"
+              label="Plataforma"
+              base-color="white"
+              bg-color="#252525"
+              hide-details
+            ></v-combobox>
+          </v-col>
         </v-row>
 
         <v-row no-gutters justify="space-between" class="mt-2">
@@ -44,7 +51,9 @@
             <v-combobox
               v-model="selectedFormat"
               :items="formatItems"
-              item-title="text"
+              :loading="formatLoading"
+              :disabled="formatLoading || formatItems.length == 0"
+              item-title="name"
               menu-icon="mdi-chevron-down"
               label="Formato"
               base-color="white"
@@ -60,6 +69,9 @@
             <v-combobox
               v-model="inscriptionLimit"
               :items="inscriptionItems"
+              :loading="inscriptionLoading"
+              :disabled="inscriptionLoading || inscriptionItems.length == 0"
+              item-title="qtd_limit_participant"
               menu-icon="mdi-chevron-down"
               label="Limite de inscrição"
               base-color="white"
@@ -70,6 +82,10 @@
             <v-combobox
               v-model="timeCheckIn"
               :items="timeCheckInItems"
+              @blur="formatCheckin"
+              @click="timeCheckIn = null"
+              type="number"
+              hide-spin-buttons
               menu-icon="mdi-chevron-down"
               label="Check-in"
               base-color="white"
@@ -81,6 +97,7 @@
               <v-text-field
                 v-model="initGame"
                 label="Data inicio"
+                placeholder="DD/MM/YYY"
                 base-color="white"
                 bg-color="#252525"
                 hide-details
@@ -88,6 +105,7 @@
               ></v-text-field>
               <v-text-field
                 v-model="endGame"
+                placeholder="DD/MM/YYY"
                 label="Data fim"
                 base-color="white"
                 bg-color="#252525"
@@ -136,7 +154,14 @@
 
         <div class="game-award-box pa-2 mt-4">
           <label class="text-white-secondary mb-2">Premiação total</label>
-          <p class="text-white font-18 ma-0 pa-0">R$ 2.500,00</p>
+          <v-text-field
+            v-model="totalPrice"
+            base-color="white"
+            bg-color="#252525"
+            variant="underlined"
+            hide-details
+            class="pt-0"
+          ></v-text-field>
         </div>
 
         <div class="game-award-box pa-2 mt-2">
@@ -145,9 +170,10 @@
           >
           <v-slider
             v-model="value"
-            :max="128"
+            :max="qtd_limit_participant"
             :min="2"
             :step="1"
+            :disabled="!qtd_limit_participant"
             hide-details
             thumb-label
           >
@@ -155,7 +181,7 @@
               <span class="text-white">2</span>
             </template>
             <template v-slot:append>
-              <span class="text-white">128</span>
+              <span class="text-white">{{ qtd_limit_participant }}</span>
             </template>
           </v-slider>
         </div>
@@ -198,7 +224,8 @@
 <script>
 import { formatMonetary } from "@/utils/format-money.js";
 import DsgBtn from "@/components/common/dsg-btn.vue";
-
+import service from "@/service/create-tournament.js";
+const Service = new service();
 export default {
   components: { DsgBtn },
   name: "create-tournament-main",
@@ -212,59 +239,21 @@ export default {
       timeCheckIn: null,
       initGame: null,
       endGame: null,
+      totalPrice: null,
+
+      gameItems: [],
+      plataformItems: [],
+      formatItems: [],
+      inscriptionItems: [],
+      timeCheckInItems: [],
 
       value: 2,
       awards: [2500, 1500, 500, 100, 35, 0],
 
-      gameItems: [
-        {
-          text: "Valorant",
-        },
-        {
-          text: "Rainbom six siege",
-        },
-        {
-          text: "CS",
-        },
-        {
-          text: "PUB G",
-        },
-        {
-          text: "EA FC",
-        },
-      ],
-      plataformItems: [
-        {
-          text: "PC",
-        },
-        {
-          text: "Console",
-        },
-      ],
-      formatItems: [
-        {
-          text: "Eliminação Simples",
-          description:
-            "Neste formato, os competidores são emparelhados em confrontos diretos, e o perdedor de cada confronto é eliminado. Isso continua até que reste apenas um vencedor.",
-        },
-        {
-          text: "Liga ou Round Robin",
-          description:
-            "Cada competidor enfrenta todos os outros competidores em uma série de partidas. Pontos são atribuídos para vitórias, empates ou derrotas, e a classificação é baseada no desempenho ao longo de todos os jogos.",
-        },
-        {
-          text: "Eliminação Dupla",
-          description:
-            "Similar ao torneio de eliminação simples, mas os competidores têm duas chances de continuar na competição. Eles precisam perder duas vezes para serem eliminados.",
-        },
-        {
-          text: "Torneio de Grupos",
-          description:
-            "Competidores são divididos em grupos e jogam entre si dentro desses grupos. Os melhores de cada grupo avançam para uma fase de eliminação direta.",
-        },
-      ],
-      inscriptionItems: [],
-      timeCheckInItems: [],
+      plataformLoading: false,
+      gameLoading: false,
+      formatLoading: false,
+      inscriptionLoading: false,
     };
   },
 
@@ -272,10 +261,65 @@ export default {
     formatDescription() {
       return this.selectedFormat?.description ?? "";
     },
+    qtd_limit_participant() {
+      return this.inscriptionLimit?.qtd_limit_participant ?? null;
+    },
   },
 
   methods: {
     formatMonetary,
+
+    async getPlataforms() {
+      this.plataformLoading = true;
+
+      try {
+        const response = await Service.getPlataforms();
+        this.plataformItems = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.plataformLoading = false;
+    },
+
+    async getGames() {
+      this.gameLoading = true;
+
+      try {
+        const response = await Service.getGames();
+        this.gameItems = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.gameLoading = false;
+    },
+
+    async getFormats() {
+      this.formatLoading = true;
+
+      try {
+        const response = await Service.getFormats();
+        this.formatItems = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.formatLoading = false;
+    },
+
+    async getLimitParticipants() {
+      this.inscriptionLoading = true;
+
+      try {
+        const response = await Service.getLimitParticipants();
+        this.inscriptionItems = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.inscriptionLoading = false;
+    },
 
     createGame() {
       let request = {
@@ -290,6 +334,17 @@ export default {
       };
       console.log(request);
     },
+
+    formatCheckin() {
+      this.timeCheckIn = this.timeCheckIn + " " + "Minutos";
+    },
+  },
+
+  created() {
+    this.getPlataforms();
+    this.getGames();
+    this.getFormats();
+    this.getLimitParticipants();
   },
 };
 </script>
